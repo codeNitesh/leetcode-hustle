@@ -34,18 +34,18 @@ class Solution
 {
     //Function to find if there exists a triplet in the 
     //array A[] which sums up to X.
-    public static boolean find3Numbers(int A[], int n, int X) { 
-    
+    public static boolean find3Numbers(int arr[], int n, int x) { 
+        
+        Arrays.sort(arr);
 
        for(int i=0; i<n; i++){
-           HashMap<Integer, Integer> hm = new HashMap<>();
-           int rest = X-A[i];
-           for(int j=i+1; j<n; j++){
-               if(hm.containsKey(rest-A[j])){
-                   return true;
-               }else{
-                   hm.put(A[j], 1);
-               }
+           int j = i+1;
+           int k = arr.length-1;
+           
+           while(j < k){
+               if(arr[i]+arr[j]+arr[k] == x) return true;
+               if(arr[i]+arr[j]+arr[k] > x) k--;
+               else j++;
            }
        }
        
